@@ -1,0 +1,33 @@
+sitemap home label="Home" {
+    Frame label="General" icon="attic" {
+	Group item=GN
+    }
+    Frame label="Ground Floor" icon="groundfloor" {
+        Group item=GF_Corridor
+    }
+
+    Frame label="First Floor" icon="firstfloor" {
+        Group item=FF_Corridor
+    }
+
+    Frame {
+        Text label="Temperature [%.1f C]" icon="temperature" {
+            Default item=FF_Corridor_Temperature label="Corridor"
+        }
+
+        Text label="Humidity [%.1f]" icon="humidity" {
+            Default item=FF_Corridor_Humidity label="Corridor"
+        }
+
+        Text label="Motion Sensor" icon="motion" {
+            Default item=FF_Corridor_Motion label="Corridor"
+        }
+
+        Text label="Supply 12VDC" icon="poweroutlet" {
+            Default item=GN_Supply_12VDC label="Supply 12VDC"
+        }
+	Text label="Supply 230VAC" icon="poweroutlet" {
+	    Default item=GN_Supply_230VAC label=" Supply 230VAC"
+	}
+    }
+}

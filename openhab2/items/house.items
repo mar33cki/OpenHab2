@@ -1,0 +1,21 @@
+Group    Home                      "Home"            <house>
+
+Group    GF                        "Ground Floor"    <groundfloor>   (Home)
+Group    FF                        "First Floor"     <firstfloor>    (Home)
+Group    GN                        "General"         <general>       (Home)
+
+Group    GF_Corridor               "Corridor"        <corridor>      (Home, GF)
+Group    FF_Corridor               "Corridor"        <corridor>      (Home, FF)
+
+Switch   GN_Supply_12VDC           "Supply 12VDC"          <poweroutlet>   (GN, gPower_12)              {mqtt=">[mosquitto:1000:command:ON:1],>[mosquitto:1000:command:OFF:0]"}
+Switch   GN_Supply_230VAC          "Supply 230VAC"         <poweroutlel>   (GN, gPower_230)             {mqtt=">[mosquitto:1001:command:ON:1],>[mosquitto:1001:command:OFF:0]"}
+Number   FF_Corridor_Temperature   "Temperature [%.1f C]"  <temperature>   (FF_Corridor, gTemperature)  {mqtt="<[mosquitto:2000:state:default]"}
+Number   FF_Corridor_Humidity      "Humidity [%.1f]"       <humidity>      (FF_Corridor, gHumidity)     {mqtt="<[mosquitto:2001:state:default]"}
+Switch   FF_Corridor_Motion        "Motion Sensor"         <motion>        (FF_Corridor, gMotion)       {mqtt="<[mosquitto:2002:state:default]"}
+
+Group:Number:AVG           gTemperature   "Temperature"     <temperature>   (Home)
+Group:Number:AVG           gHumidity      "Humidity"        <humidity>      (Home)
+Group:Switch:OR(ON, OFF)   gMotion        "Motion Sensor"   <motion>        (Home)
+Group:Switch:OR(ON, OFF)   gPower_12      "Supply_12VDC"    <poweroutlet>   (Home)
+Group:Switch:OR(ON, OFF)   gPower_230     "Supply_230VAC"   <poweroutlet>   (Home)
+
